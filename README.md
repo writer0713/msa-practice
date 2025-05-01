@@ -7,3 +7,4 @@ practice MSA Architecture
 
 ## 스터디 방안
 - 분량: 매주 "Spring Cloud로 개발하는 마이크로서비스 애플리케이션(MSA)" 2개 섹션 강의 수강
+- 시간: 매주 일요일 오후 8시 온라인
