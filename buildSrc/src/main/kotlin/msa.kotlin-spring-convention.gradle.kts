@@ -1,3 +1,7 @@
+import gradle.kotlin.dsl.accessors._47c39f0bb1534eeccd39549aef06810b.java
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
@@ -15,8 +19,13 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "21"
+
+tasks.withType<KotlinCompile> {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_21)
     }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
