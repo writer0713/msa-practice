@@ -1,3 +1,3 @@
-rootProject.name = "msa"
+rootProject.name = "msa-root"
 
 include("msa-discovery")
