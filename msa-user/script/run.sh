@@ -5,20 +5,11 @@ GRADLEW=../gradlew
 echo "Starting Spring Boot application using $GRADLEW bootRun..."
 
 # gradlew 스크립트에 실행 권한이 있는지 확인하고 실행
-if [ -x $GRADLEW ]; then
-  "$GRADLEW" bootRun
-else
+if [ ! -x $GRADLEW ]; then
   echo "Error: gradlew script not found or is not executable."
-  echo "Attempting to grant execute permission..."
-  chmod +x $GRADLEW
-  if [ -x $GRADLEW ]; then
-    echo "Permission granted. Retrying..."
-    "$GRADLEW" bootRun
-  else
-    echo "Error: Failed to grant permission or gradlew not found."
-    exit 1
-  fi
+  exit 1
 fi
+"$GRADLEW" bootRun
 
 # 스크립트 실행 결과 확인 (선택 사항)
 exit_code=$?
