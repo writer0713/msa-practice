@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/first-service")
 @RestController
 class MainController {
-    @GetMapping("/")
+    @GetMapping
     fun main(): String = "first-service"
 
     @GetMapping("/hello")
