@@ -1,4 +1,4 @@
-package com.writer0713.discovery
+package com.writer0713.user
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
