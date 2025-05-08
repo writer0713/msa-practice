@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: msa-first-service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://127.0.0.1:8761}/eureka
