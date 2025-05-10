@@ -13,20 +13,16 @@ spring:
             postLogger: true
       routes:
         - id: first-service
-          uri: http://127.0.0.1:8081
+          uri: lb://MSA-FIRST-SERVICE
           predicates:
             - Path=/first-service/**
           filters:
-            # - AddRequestHeader=first-request, first-request-header2
-            # - AddResponseHeader=first-response, first-response-header2
             - CustomFilter
         - id: second-service
-          uri: http://127.0.0.1:8082
+          uri: lb://MSA-SECOND-SERVICE
           predicates:
             - Path=/second-service/**
           filters:
-            #- AddRequestHeader=second-request, second-request-header2
-            #- AddResponseHeader=second-response, second-response-header2
             - name: CustomFilter
             - name: LoggingFilter
               args:
