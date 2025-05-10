@@ -27,7 +27,7 @@ class FilterConfig {
                 .filters {
                     it
                         .addRequestHeader("second-request", "second-request-header")
-                        .addResponseHeader("second-response", "second-resposne-header")
+                        .addResponseHeader("second-response", "second-response-header")
                 }.uri("http://127.0.0.1:8082")
         }
 

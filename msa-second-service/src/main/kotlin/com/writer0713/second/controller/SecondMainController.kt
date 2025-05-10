@@ -28,5 +28,5 @@ class SecondMainController {
     }
 
     @GetMapping("/check")
-    fun message(): String = "Hi, there. This is a message from Second-Service"
+    fun check(): String = "Hi, there. This is a message from Second-Service"
 }

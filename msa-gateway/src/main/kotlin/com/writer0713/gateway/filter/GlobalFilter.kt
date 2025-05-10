@@ -36,7 +36,7 @@ class GlobalFilter : AbstractGatewayFilterFactory<GlobalFilter.Config>(Config::c
 
     class Config(
         internal val baseMessage: String,
-        internal val preLogger: Boolean,
-        internal val postLogger: Boolean,
+        internal val preLogger: Boolean = false,
+        internal val postLogger: Boolean = false,
     )
 }
