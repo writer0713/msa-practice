@@ -1,6 +1,7 @@
 package com.writer0713.first.controller
 
 import io.github.oshai.kotlinlogging.KotlinLogging
+import org.springframework.core.env.Environment
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping("/first-service")
 @RestController
-class FirstMainController {
+class FirstMainController(
+    private val env: Environment,
+) {
     companion object {
         private val log = KotlinLogging.logger { }
     }
@@ -28,5 +31,8 @@ class FirstMainController {
     }
 
     @GetMapping("/check")
-    fun check(): String = "Hi, there. This is a message from First-Service"
+    fun check(): String {
+        val port = env.getProperty("local.server.port")
+        return "Hi, there. This is a message from First-Service on PORT $port"
+    }
 }
