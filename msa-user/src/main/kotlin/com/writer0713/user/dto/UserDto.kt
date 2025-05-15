@@ -10,8 +10,8 @@ data class UserDto(
     val email: String,
     val name: String,
     val password: String? = null,
+    var encryptedPassword: String? = null,
     var userId: String = UUID.randomUUID().toString(),
-    val encryptedPassword: String? = null,
     val createdAt: LocalDateTime? = null,
 )
 
@@ -20,7 +20,7 @@ fun UserDto.toEntity(): UserEntity =
         email = this.email,
         name = this.name,
         userId = this.userId,
-        encryptedPassword = "[ENCRYPTED] ${this.password}",
+        encryptedPassword = this.encryptedPassword!!,
     )
 
 fun UserDto.fromEntity(userEntity: UserEntity): UserDto =
