@@ -1,16 +1,19 @@
-import gradle.kotlin.dsl.accessors._47c39f0bb1534eeccd39549aef06810b.java
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
+    kotlin("plugin.jpa")
     id("org.springframework.boot")
     id("io.spring.dependency-management")
 }
 
 repositories {
     mavenCentral()
+}
+
+allOpen {
 }
 
 // 공통 Java/Kotlin 설정 (필요하다면)
