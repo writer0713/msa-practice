@@ -20,7 +20,7 @@ fun UserDto.toEntity(): UserEntity =
         email = this.email,
         name = this.name,
         userId = this.userId,
-        encryptedPassword = this.encryptedPassword!!,
+        encryptedPassword = this.encryptedPassword ?: throw IllegalArgumentException("Password is required"),
     )
 
 fun UserDto.fromEntity(userEntity: UserEntity): UserDto =

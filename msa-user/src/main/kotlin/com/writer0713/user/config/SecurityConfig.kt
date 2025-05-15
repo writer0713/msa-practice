@@ -12,6 +12,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMa
 class SecurityConfig {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
+        // h2-console 사용을 위한 csrf disable
         http.csrf { csrf -> csrf.disable() }
 
         // request 기반 authorization
