@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user-service")
 class UserController(
     private val userService: UserService,
     private val env: Environment,
@@ -30,6 +30,25 @@ class UserController(
         val createdUserDto = userService.createUser(userDto)
         val responseUser = ResponseUser.fromDto(createdUserDto)
         return ResponseEntity.status(201).body(responseUser)
+    }
+
+    @GetMapping("/users")
+    fun getUsers(): ResponseEntity<List<ResponseUser>> {
+        val users = userService.getAllUsers()
+        val responseUsers =
+            users.map { userDto ->
+                ResponseUser.fromDto(userDto)
+            }
+        return ResponseEntity.ok(responseUsers)
+    }
+
+    @GetMapping("/users/{userId}")
+    fun getUsers(
+        @PathVariable("userId") userId: String,
+    ): ResponseEntity<ResponseUser> {
+        val userDto = userService.getUserById(userId)
+        val responseUser = ResponseUser.fromDto(userDto)
+        return ResponseEntity.ok(responseUser)
     }
 
     @GetMapping("/health-check")
