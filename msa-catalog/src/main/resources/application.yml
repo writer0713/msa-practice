@@ -11,8 +11,10 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true # 데이터 소스 초기화 지연 (data.sql 실행 전에 JPA 초기화)
   h2:
     console:
       enabled: true
