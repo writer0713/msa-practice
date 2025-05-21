@@ -15,9 +15,7 @@ data class UserDto(
     var userId: String = UUID.randomUUID().toString(),
     val createdAt: LocalDateTime? = null,
     val orders: List<ResponseOrder> = emptyList(),
-) {
-    companion object {}
-}
+)
 
 fun UserDto.toEntity(): UserEntity =
     UserEntity(
@@ -25,22 +23,4 @@ fun UserDto.toEntity(): UserEntity =
         name = this.name,
         userId = this.userId,
         encryptedPassword = this.encryptedPassword ?: throw IllegalArgumentException("Password is required"),
-    )
-
-fun UserDto.Companion.of(userEntity: UserEntity): UserDto =
-    UserDto(
-        email = userEntity.email,
-        name = userEntity.name,
-        userId = userEntity.userId,
-        encryptedPassword = userEntity.encryptedPassword,
-        createdAt = userEntity.createdAt,
-    )
-
-fun UserDto.fromEntity(userEntity: UserEntity): UserDto =
-    UserDto(
-        email = userEntity.email,
-        name = userEntity.name,
-        userId = userEntity.userId,
-        encryptedPassword = userEntity.encryptedPassword,
-        createdAt = userEntity.createdAt,
     )
