@@ -11,7 +11,7 @@ class OrderEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L,
-    @Column(nullable = false, unique = true, length = 120)
+    @Column(nullable = false, length = 120)
     val productId: String,
     @Column(nullable = false)
     val quantity: Int,
