@@ -12,9 +12,15 @@ spring:
             preLogger: true
             postLogger: true
 
+      routes:
+        - id: user-service
+          uri: lb://MSA-USER
+          predicates:
+          - Path=/user-service/**
+
 eureka:
   client:
-    register-with-eureka: false
+    register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
