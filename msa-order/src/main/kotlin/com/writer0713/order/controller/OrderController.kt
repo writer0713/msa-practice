@@ -32,13 +32,23 @@ class OrderController(
     }
 
     @GetMapping("/{userId}/orders")
-    fun getOrder(
+    fun getOrders(
         @PathVariable("userId") userId: String,
     ): ResponseEntity<List<ResponseOrder>> {
         val orders = orderService.getOrdersByUserId(userId)
         val responseOrders = orders.map { it.toResponseOrder() }
 
         return ResponseEntity.ok(responseOrders)
+    }
+
+    @GetMapping("/orders/{orderId}")
+    fun getOrder(
+        @PathVariable("orderId") orderId: String,
+    ): ResponseEntity<ResponseOrder> {
+        val orderDto = orderService.getOrderByOrderId(orderId)
+        val responseOrder = orderDto.toResponseOrder()
+
+        return ResponseEntity.ok(responseOrder)
     }
 
     @GetMapping("/health-check")
