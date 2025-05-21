@@ -14,6 +14,9 @@ repositories {
 }
 
 allOpen {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
 }
 
 // 공통 Java/Kotlin 설정 (필요하다면)
