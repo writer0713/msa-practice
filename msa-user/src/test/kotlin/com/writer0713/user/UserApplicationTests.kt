@@ -1,4 +1,4 @@
-package com.writer0713.discovery
+package com.writer0713.user
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
