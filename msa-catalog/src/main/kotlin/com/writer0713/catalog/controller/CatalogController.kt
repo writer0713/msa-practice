@@ -13,7 +13,7 @@ class CatalogController(
     private val catalogService: CatalogService,
 ) {
     @GetMapping("/catalogs")
-    fun getUsers(): ResponseEntity<List<ResponseCatalog>> {
+    fun getCatalogs(): ResponseEntity<List<ResponseCatalog>> {
         val catalogs = catalogService.getAllCatalogs()
         val responseCatalogs =
             catalogs.map { catalogEntity ->
