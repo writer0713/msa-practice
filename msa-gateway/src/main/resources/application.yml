@@ -11,12 +11,15 @@ spring:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
-
       routes:
         - id: user-service
           uri: lb://MSA-USER
           predicates:
           - Path=/user-service/**
+        - id: catalog-service
+          uri: lb://MSA-CATALOG
+          predicates:
+            - Path=/catalog-service/**
 
 eureka:
   client:
