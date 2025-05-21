@@ -1,9 +1,10 @@
 package com.writer0713.user.service
 
 import com.writer0713.user.dto.UserDto
-import com.writer0713.user.dto.fromEntity
 import com.writer0713.user.dto.toEntity
+import com.writer0713.user.entity.toDto
 import com.writer0713.user.repository.UserRepository
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -19,6 +20,20 @@ class UserServiceImpl(
         val userEntity = userDto.toEntity()
         val savedEntity = userRepository.save(userEntity)
 
-        return userDto.fromEntity(savedEntity)
+        return savedEntity.toDto()
     }
+
+    override fun getUserById(userId: String): UserDto {
+        val userEntity = userRepository.findByUserId(userId) ?: throw UsernameNotFoundException("User not found")
+        val userDto = userEntity.toDto()
+
+        // TODO : 추후 orders set
+
+        return userDto
+    }
+
+    override fun getAllUsers(): Iterable<UserDto> =
+        userRepository.findAll().map { userEntity ->
+            userEntity.toDto()
+        }
 }

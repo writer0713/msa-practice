@@ -14,7 +14,7 @@ data class RequestUser(
     @field:Size(min = 2, message = "Name must be at least 2 characters")
     val name: String,
     @field:NotNull(message = "Password cannot be null")
-    @field:Size(min = 8, message = "Password must be at least 8 characters")
+    @field:Size(min = 4, message = "Password must be at least 4 characters")
     val password: String,
 )
 

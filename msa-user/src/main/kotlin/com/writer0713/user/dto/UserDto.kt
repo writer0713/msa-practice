@@ -2,6 +2,7 @@ package com.writer0713.user.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.writer0713.user.entity.UserEntity
+import com.writer0713.user.vo.ResponseOrder
 import java.time.LocalDateTime
 import java.util.*
 
@@ -13,6 +14,7 @@ data class UserDto(
     var encryptedPassword: String? = null,
     var userId: String = UUID.randomUUID().toString(),
     val createdAt: LocalDateTime? = null,
+    val orders: List<ResponseOrder> = emptyList(),
 )
 
 fun UserDto.toEntity(): UserEntity =
@@ -21,13 +23,4 @@ fun UserDto.toEntity(): UserEntity =
         name = this.name,
         userId = this.userId,
         encryptedPassword = this.encryptedPassword ?: throw IllegalArgumentException("Password is required"),
-    )
-
-fun UserDto.fromEntity(userEntity: UserEntity): UserDto =
-    UserDto(
-        email = userEntity.email,
-        name = userEntity.name,
-        userId = userEntity.userId,
-        encryptedPassword = userEntity.encryptedPassword,
-        createdAt = userEntity.createdAt,
     )

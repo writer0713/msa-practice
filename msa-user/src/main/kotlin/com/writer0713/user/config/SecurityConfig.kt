@@ -19,7 +19,8 @@ class SecurityConfig {
         http.authorizeHttpRequests { auth ->
             auth
                 .requestMatchers(
-                    antMatcher("/users/**"),
+                    antMatcher("/**"),
+                    antMatcher("/user-service/users/**"),
                     antMatcher(("/h2-console/**")),
                 ).permitAll()
         }

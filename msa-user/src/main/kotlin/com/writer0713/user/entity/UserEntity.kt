@@ -1,5 +1,6 @@
 package com.writer0713.user.entity
 
+import com.writer0713.user.dto.UserDto
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -20,3 +21,12 @@ class UserEntity(
     @Column(nullable = false, updatable = false)
     var createdAt: LocalDateTime = LocalDateTime.now(),
 )
+
+fun UserEntity.toDto(): UserDto =
+    UserDto(
+        email = this.email,
+        name = this.name,
+        userId = this.userId,
+        encryptedPassword = this.encryptedPassword,
+        createdAt = this.createdAt,
+    )
