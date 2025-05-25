@@ -1,7 +1,9 @@
 package com.writer0713.user.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.writer0713.user.config.filter.AuthenticationLoggingFilter
 import com.writer0713.user.config.filter.CustomAuthenticationFilter
+import com.writer0713.user.config.filter.RequestValidationFilter
 import com.writer0713.user.service.UserService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -38,6 +40,8 @@ class SecurityConfig(
         }
 
         http.addFilter(customAuthenticationFilter())
+        http.addFilterBefore(RequestValidationFilter(), CustomAuthenticationFilter::class.java)
+        http.addFilterAfter(AuthenticationLoggingFilter(), CustomAuthenticationFilter::class.java)
 
         // h2-console iframe 이 잘 나오도록 하기 위함
         http.headers { headerConfig -> headerConfig.frameOptions { it.sameOrigin() } }
