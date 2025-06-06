@@ -34,7 +34,8 @@ class SecurityConfig(
                 .requestMatchers(HttpMethod.POST, "/users")
                 .permitAll()
                 .anyRequest()
-                .authenticated()
+                .permitAll()
+//                .authenticated()
         }
 
         http.addFilter(customAuthenticationFilter())
