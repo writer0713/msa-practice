@@ -1,6 +1,9 @@
 server:
   port: 8888
 spring:
+  config:
+    import:
+      - private.yml
   application:
     name: msa-config
   cloud:
@@ -9,4 +12,4 @@ spring:
         git:
           uri: git@github.com:writer0713/msa-practice-config.git
           ignoreLocalSshSettings: true
-          private-key: ${user.home}/.ssh/msa_practice
+          private-key: ${git.private-key}
