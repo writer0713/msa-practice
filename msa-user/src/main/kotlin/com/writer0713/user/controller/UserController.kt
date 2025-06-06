@@ -58,7 +58,8 @@ class UserController(
     fun welcome(): String {
         val messageFromEnv = env.getProperty("greeting.message") ?: "no greeting.message"
         log.info { ">>> messageFromEnv : $messageFromEnv" }
+        log.info { ">>> greeting.message : ${greeting.message}" }
 
-        return greeting.message
+        return messageFromEnv
     }
 }
