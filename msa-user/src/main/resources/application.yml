@@ -19,6 +19,8 @@ spring:
       settings:
         web-allow-others: true
       path: /h2-console
+  config:
+    import: optional:configserver:http://127.0.0.1:8888
 
 eureka:
   instance:
@@ -31,3 +33,9 @@ eureka:
 
 greeting:
   message: Welcome to the Simple E-commerce
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
