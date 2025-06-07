@@ -13,3 +13,7 @@ spring:
           uri: git@github.com:writer0713/msa-practice-config.git
           ignoreLocalSshSettings: true
           private-key: ${git.private-key}
+  docker:
+    compose:
+      enabled: true
+      file: docker/compose.yaml

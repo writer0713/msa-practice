@@ -1,0 +1,19 @@
+services:
+  rabbitmq:
+    image: 'rabbitmq:4-management'
+    environment:
+      - 'RABBITMQ_DEFAULT_USER=admin'
+      - 'RABBITMQ_DEFAULT_PASS=admin'
+    ports:
+      - '5672:5672'      # AMQP 포트
+      - '15672:15672'    # Management UI 포트
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  rabbitmq_data:
