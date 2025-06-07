@@ -17,3 +17,14 @@ spring:
     compose:
       enabled: true
       file: docker/compose.yaml
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh
