@@ -1,5 +1,6 @@
 package com.writer0713.user.service
 
+import com.writer0713.user.client.OrderServiceClient
 import com.writer0713.user.dto.UserDto
 import com.writer0713.user.dto.toEntity
 import com.writer0713.user.entity.toDto
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service
 @Service
 class UserServiceImpl(
     private val userRepository: UserRepository,
+    private val orderServiceClient: OrderServiceClient,
     @Lazy private val passwordEncoder: BCryptPasswordEncoder,
 ) : UserService {
     companion object {
@@ -35,7 +37,8 @@ class UserServiceImpl(
         val userEntity = userRepository.findByUserId(userId) ?: throw UsernameNotFoundException("User not found")
         val userDto = userEntity.toDto()
 
-        // TODO : 추후 orders set
+        val orders = orderServiceClient.getOrders(userId)
+        userDto.orders = orders
 
         return userDto
     }

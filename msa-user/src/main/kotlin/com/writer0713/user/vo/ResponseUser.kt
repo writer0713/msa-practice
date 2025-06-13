@@ -16,6 +16,7 @@ data class ResponseUser(
                 email = createdUserDto.email,
                 name = createdUserDto.name,
                 userId = createdUserDto.userId,
+                orders = createdUserDto.orders,
             )
     }
 }
