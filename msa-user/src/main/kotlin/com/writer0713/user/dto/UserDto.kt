@@ -14,7 +14,7 @@ data class UserDto(
     var encryptedPassword: String? = null,
     var userId: String = UUID.randomUUID().toString(),
     val createdAt: LocalDateTime? = null,
-    val orders: List<ResponseOrder> = emptyList(),
+    var orders: List<ResponseOrder> = emptyList(),
 )
 
 fun UserDto.toEntity(): UserEntity =
