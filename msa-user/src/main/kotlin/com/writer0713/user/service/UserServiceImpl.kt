@@ -5,6 +5,7 @@ import com.writer0713.user.dto.UserDto
 import com.writer0713.user.dto.toEntity
 import com.writer0713.user.entity.toDto
 import com.writer0713.user.repository.UserRepository
+import feign.FeignException
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.context.annotation.Lazy
 import org.springframework.security.core.userdetails.User
@@ -37,8 +38,12 @@ class UserServiceImpl(
         val userEntity = userRepository.findByUserId(userId) ?: throw UsernameNotFoundException("User not found")
         val userDto = userEntity.toDto()
 
-        val orders = orderServiceClient.getOrders(userId)
-        userDto.orders = orders
+        try {
+            val orders = orderServiceClient.getOrders(userId)
+            userDto.orders = orders
+        } catch (ex: FeignException) {
+            log.error { ex.message }
+        }
 
         return userDto
     }
