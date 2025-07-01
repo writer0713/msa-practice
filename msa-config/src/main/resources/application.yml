@@ -16,7 +16,9 @@ spring:
   docker:
     compose:
       enabled: true
-      file: docker/rabbitmq.yaml
+      file:
+        - docker/rabbitmq.yaml
+        - docker/kafka.yaml
   rabbitmq:
     host: 127.0.0.1
     port: 5672

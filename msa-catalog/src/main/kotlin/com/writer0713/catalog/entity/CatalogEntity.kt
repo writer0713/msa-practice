@@ -15,7 +15,7 @@ class CatalogEntity(
     @Column(nullable = false)
     val productName: String,
     @Column(nullable = false)
-    val stock: Int,
+    var stock: Int,
     @Column(nullable = false)
     val unitPrice: Int,
     @Column(nullable = false, updatable = false, insertable = false)
