@@ -1,6 +1,7 @@
 package com.writer0713.order.controller
 
 import com.writer0713.order.dto.toResponseOrder
+import com.writer0713.order.kafka.KafkaProducer
 import com.writer0713.order.service.OrderService
 import com.writer0713.order.vo.RequestOrder
 import com.writer0713.order.vo.ResponseOrder
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class OrderController(
     private val orderService: OrderService,
+    private val kafkaProducer: KafkaProducer,
 ) {
     @PostMapping("/{userId}/orders")
     fun createOrder(
@@ -27,6 +29,9 @@ class OrderController(
         val orderDto = requestOrder.toDto(userId = userId)
         val createdOrderDto = orderService.createOrder(orderDto)
         val responseOrder = createdOrderDto.toResponseOrder()
+
+        // TODO : Kafka Producer로 메시지 전송
+        kafkaProducer.sendMessage("example-topic", orderDto)
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseOrder)
     }
